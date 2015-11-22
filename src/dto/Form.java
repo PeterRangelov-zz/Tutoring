@@ -17,24 +17,10 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class Form {
-	@NotEmpty
+	private String first, second, third;
+	private String payment;
 	private String name;
-	
-	@NotEmpty
-	private String unit;
-	
-	@NotEmpty
-	private String subject;
-	
-	@NotEmpty
-	private String text;
-	
-	private MultipartFile file;
+	private String email;
 
-	public File getAsFile() throws IllegalStateException, IOException {
-		File convFile = new File(file.getOriginalFilename());
-		file.transferTo(convFile);
-		return convFile;
-	}
 }
 
