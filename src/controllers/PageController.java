@@ -39,7 +39,7 @@ public class PageController {
 		return new ModelAndView("index").addObject("form", new Form());
 	}
 
-	@RequestMapping(value = "/new", method = RequestMethod.POST) @ResponseBody
+	@RequestMapping(value = "/submit", method = RequestMethod.POST) @ResponseBody
 	public String submitForm(@ModelAttribute("form") Form form, BindingResult result) throws MalformedURLException, IOException {
 		System.out.println("submitForm called");
 		System.out.println(form);

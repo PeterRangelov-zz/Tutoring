@@ -1,5 +1,10 @@
 angular.module('root', [])
     .controller("index", ["$scope", function ($scope) {
+        $('#datetime1').datetimepicker({
+            formatDate:'mm/dd/yyyy'
+        });
+
+
         $scope.message = "Hello World!";
 
         $scope.name;

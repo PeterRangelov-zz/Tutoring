@@ -4,10 +4,17 @@
 	<head>
 		<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script>
-		<script src="/pages/root.js"></script>
+		<link href="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.min.css" rel="stylesheet">
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 		<link href=//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css rel="stylesheet">
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.min.js"></script>
+		<script src="/pages/root.js"></script>
+
+
+
 		<title>Tutoring</title>
 	</head>
 	
@@ -17,10 +24,21 @@
 				<hr>
 
 			<div class=row>
+
+
+
+
+				<input type="text" name="datetime1" id="datetime1" placeholder=""/>
+
+
+
+
+
+
 				<div class="col-xs-12">
 
 
-				<form:form method="post" action="/new" modelAttribute="form">
+				<form:form method="post" action="/submit" modelAttribute="form">
 
 					<div class="form-group col-sm-6">
 						<label for="name">Name</label>
@@ -51,38 +69,41 @@
 							<option value="3">3 hours</option>
 							<option value="4">4 hours</option>
 						</select>
-					</div>
-
-
-
-					<br>
-					<div class="form-group col-sm-12">
-						<label>
-							<form:radiobutton path="payment" value="cash" ng-model="payment"/> Pay with cash
-						</label>
-
 						<br>
-
-						<label>
-							<form:radiobutton path="payment" value="paypal" ng-model="payment"/> Pay with paypal
-						</label>
+						Total: $ {{total}}.00
 					</div>
 
-					<br>
+
+
+
+
+					<%--<div class="form-group col-sm-12">--%>
+						<%--<label>--%>
+							<%--<form:radiobutton path="payment" value="cash" ng-model="payment"/> Pay with cash--%>
+						<%--</label>--%>
+
+						<%--<br>--%>
+
+						<%--<label>--%>
+							<%--<form:radiobutton path="payment" value="paypal" ng-model="payment"/> Pay with paypal--%>
+						<%--</label>--%>
+					<%--</div>--%>
+
+					<%--<br>--%>
+					<%--<div class="form-group col-sm-12">--%>
+						<%--<div ng-if="payment=='cash'">--%>
+							<%--<p>Cash div</p>--%>
+						<%--</div>--%>
+						<%--<div ng-if="payment=='paypal'">--%>
+							<%--<p>Paypal div</p>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+
+
+
 					<div class="form-group col-sm-12">
-						<div ng-if="payment=='cash'">
-							<p>Cash div</p>
-						</div>
-						<div ng-if="payment=='paypal'">
-							<p>Paypal div</p>
-						</div>
+						<button type="submit" class="btn btn-lg btn-success">Submit</button>
 					</div>
-					<br>
-					<hr>
-					Total: $ {{total}}.00
-					<br><br><br>
-					<button type="submit" class="btn btn-success">Submit</button>
-
 				</form:form>
 				</div>
 

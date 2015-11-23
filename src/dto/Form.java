@@ -17,10 +17,12 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class Form {
-	private String first, second, third;
-	private String payment;
+	private String first;
+	private String second;
 	private String name;
 	private String email;
+	private String hours;
+	private String payment;
 
 }
 
