@@ -8,10 +8,12 @@
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 		<link href=//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css rel="stylesheet">
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.min.js"></script>
 		<script src="/pages/root.js"></script>
+		<%--<script src="//livejs.com/live.js"></script>--%>
 
 
 
@@ -20,7 +22,7 @@
 	
 	<body ng-app="root" >
 		<div class="container" ng-controller="index">
-				<h3 class='text-success'>Java tutoring in Columbia, MD</h3>
+				<h2 class='text-success'>Private Java tutoring & homework help for UMUC students</h2>
 				<hr>
 
 			<div class=row>
@@ -28,7 +30,7 @@
 
 
 
-				<input type="text" name="datetime1" id="datetime1" placeholder=""/>
+				<%--<input type="text" name="datetime1" id="datetime1" placeholder=""/>--%>
 
 
 
@@ -36,68 +38,62 @@
 
 
 				<div class="col-xs-12">
-
+					Tutoring sessions are offered Saturdays and Sundays 1pm - 5pm at the Library: <br>
+					<a href="https://www.google.com/maps/place/Howard+County+Library+System,+HCLS+East+Columbia+Branch/@39.1903163,-76.8489411,17z/data=!3m1!4b1!4m2!3m1!1s0x89b7de351a6b100b:0x5d40cb70949581ff" target="_blank">Howard County Library System, East Columbia Branch</a> <br>
+					6600 Cradlerock Way, Columbia, MD 21045
+					<h3>Please fill out this form and I'll be in touch</h3>
 
 				<form:form method="post" action="/submit" modelAttribute="form">
-
-					<div class="form-group col-sm-6">
-						<label for="name">Name</label>
-						<form:input path="name" ng-model="name" class="form-control"/>
+					<div class="form-group col-sm-12">
+						<label for="name">Your name</label>
+						<form:errors path="name" cssClass="text-danger"/>
+						<form:input path="name" class="form-control" value="${form.name}"/>
 					</div>
 
-					<div class="form-group col-sm-6">
-						<label for="email">Email</label>
-						<form:input path="email" ng-model="email" class="form-control"/>
+					<div class="form-group col-sm-12">
+						<label for="email">Your email</label>
+						<form:errors path="email" cssClass="text-danger"/>
+						<form:input path="email" class="form-control" value="${form.email}"/>
 					</div>
 
-					<div class="form-group col-sm-6">
-						<label for="first">Preferred time</label>
-						<form:input path="first" ng-model="first" class="form-control"/>
+					<div class="form-group col-sm-12">
+						<label for="datetime1">Preferred time</label>
+						<form:errors path="first" cssClass="text-danger"/>
+						<form:input path="first" class="form-control" id="datetime1" value="${form.first}"/>
 					</div>
 
-					<div class="form-group col-sm-6">
-						<label for="second">Alternate time</label>
-						<form:input path="second" ng-model="second" class="form-control"/>
+					<div class="form-group col-sm-12">
+						<label for="datetime2">Alternate time</label>
+						<form:input path="second" class="form-control" id="datetime2" value="${form.second}"/>
 					</div>
 
 
 					<div class="form-group col-sm-12">
 						<label for="hours">How many hours would you like to schedule?</label>
-						<select ng-model="hours" id="hours">
-							<option value="1">1 hour</option>
-							<option value="2">2 hours</option>
-							<option value="3">3 hours</option>
-							<option value="4">4 hours</option>
-						</select>
+						<form:select path="hours" id="hours" value="${form.hours}" >
+							<form:option value="1">1 hour</form:option>
+							<form:option value="2">2 hours</form:option>
+							<form:option value="3">3 hours</form:option>
+							<form:option value="4">4 hours</form:option>
+						</form:select>
+
 						<br>
-						Total: $ {{total}}.00
+
+						<p id = "totalP"></p>
 					</div>
 
 
+					<div class="form-group col-sm-12">
+						<label>
+							<form:radiobutton path="payment" value="cash"  /> I'm paying cash
+						</label>
 
+						<br>
 
-
-					<%--<div class="form-group col-sm-12">--%>
-						<%--<label>--%>
-							<%--<form:radiobutton path="payment" value="cash" ng-model="payment"/> Pay with cash--%>
-						<%--</label>--%>
-
-						<%--<br>--%>
-
-						<%--<label>--%>
-							<%--<form:radiobutton path="payment" value="paypal" ng-model="payment"/> Pay with paypal--%>
-						<%--</label>--%>
-					<%--</div>--%>
-
-					<%--<br>--%>
-					<%--<div class="form-group col-sm-12">--%>
-						<%--<div ng-if="payment=='cash'">--%>
-							<%--<p>Cash div</p>--%>
-						<%--</div>--%>
-						<%--<div ng-if="payment=='paypal'">--%>
-							<%--<p>Paypal div</p>--%>
-						<%--</div>--%>
-					<%--</div>--%>
+						<label>
+							<form:radiobutton path="payment" value="paypal"/> I'm paying with paypal
+						</label>
+					</div>
 
 
 
@@ -107,57 +103,30 @@
 				</form:form>
 				</div>
 
+					<div>
+						<h3>About Peter:</h3>
+						Peter is a Lead Java Developer at a Big Four consulting firm. He holds several industry certifications: CompTIA Network+, Security+, Cloud+, CDIA+, CEH.
+						Peter obtained his Bachelor's and Master's degrees in Computer Science from UMBC. <b>Excellent references available upon request!</b>
+						<br>
+						<a href="https://www.linkedin.com/in/peterrangelov" target="_blank">Peter's LinkedIn</a>
+						<br>
+						<a href="https://github.com/PeterRangelov" target="_blank">Peter's Github</a>
 
+						<br>
 
-				<%--<form method="post" action="/submit" enctype="multipart/form-data">--%>
-					<%--<div class="col-xs-6">--%>
-						<%--<label>Your name (required)</label>--%>
-						<%--<form:errors path="form.name" cssClass="text-danger"/>--%>
-						<%--<input id="name" name=name class=form-control maxlength=30 value=${form.name} >--%>
-					<%--</div>--%>
-					<%----%>
-					<%--<div class="col-xs-6">--%>
-						<%--<label>Unit (required)</label>--%>
-						<%--<form:errors path="form.unit" cssClass="text-danger"/>--%>
-						<%--<input id="unit" name=unit class=form-control maxlength=10 value=${form.unit}>--%>
-					<%--</div>--%>
-					<%----%>
-					<%----%>
-					<%--<div class="col-xs-12">--%>
-						<%--<label>Subject (required)</label>--%>
-						<%--<form:errors path="form.subject" cssClass="text-danger"/>--%>
-						<%--<input name=subject class=form-control maxlength=30 value=${form.subject}>--%>
-					<%--</div>--%>
-					<%----%>
-					<%--<div class="col-xs-12">--%>
-						<%--<label>Please provide details (required)</label>--%>
-						<%--<form:errors path="form.text" cssClass="text-danger"/>--%>
-						<%--<textarea class=form-control rows="7" cols="50" name=text maxlength=1000>${form.text}</textarea>--%>
-					<%--</div>--%>
-					<%----%>
-					<%--<div class="col-xs-12 ">--%>
-						<%--<label>Upload photo</label>--%>
-						<%--<form:errors path="form.file"></form:errors>--%>
-						<%--<input type="file" name="file">--%>
-					<%--</div>--%>
-					<%----%>
-					<%--<div class="col-xs-12 ">--%>
-						<%--<br>--%>
-						<%--<button type=submit class="btn btn-success">Submit request</button>--%>
-					<%--</div>--%>
-				<%--</form>--%>
+						<br>
 
 
 
+						This application is written using Spring MVC, Java 8, Twitter bootstrap, Angular, HTML, JQuery. Font Awesome.<br>
+						Check out the source code <a href="https://github.com/PeterRangelov/Tutoring" target="_blank">here</a>.
 
-
-
-
-
+					</div>
 
 
 			</div>
 		</div>
+
 			
 		
 	</body>

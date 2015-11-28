@@ -30,13 +30,11 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
  
     </bean>
 
-	<!--
     <bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/message-source/form" />
 		<property name="cacheSeconds" value="1" />
 	</bean>
-	-->
 
 
 

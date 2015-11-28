@@ -39,14 +39,21 @@ public class PageController {
 		return new ModelAndView("index").addObject("form", new Form());
 	}
 
-	@RequestMapping(value = "/submit", method = RequestMethod.POST) @ResponseBody
-	public String submitForm(@ModelAttribute("form") Form form, BindingResult result) throws MalformedURLException, IOException {
+	@RequestMapping(value = "/submit", method = RequestMethod.POST)
+	public ModelAndView submitForm(@Valid @ModelAttribute("form") Form form, BindingResult result) throws MalformedURLException, IOException {
 		System.out.println("submitForm called");
 		System.out.println(form);
-		
-		
 
-		return "OK";
+
+		if (result.hasErrors()) {
+			ModelAndView m = new ModelAndView("index");
+			m.addObject("form", form);
+			return m;
+		}
+		form.emailMe();
+		ModelAndView m = new ModelAndView("thank_you");
+		m.addObject("form", form);
+		return m;
 	}
 
 }
